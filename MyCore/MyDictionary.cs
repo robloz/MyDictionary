@@ -74,6 +74,9 @@ namespace MyCore
 
         public void ReadXml(XmlReader reader)
         {
+            if (reader.IsEmptyElement)
+                return;
+
             if (reader.ReadToDescendant("Item"))
             {
                 do
@@ -90,7 +93,7 @@ namespace MyCore
                 } while (reader.ReadToNextSibling("Item"));
             }
 
-            reader.ReadEndElement();
+            reader.ReadEndElement();// read the header
         }
 
         public void WriteXml(XmlWriter writer)
